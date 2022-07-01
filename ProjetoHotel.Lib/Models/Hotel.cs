@@ -4,19 +4,24 @@ namespace ProjetoHotel.Lib.Models
 {
     public class Hotel : ModelBase
     {
-        private string Nome { get; set; }
-        private string Endereco { get; set; }
-        private string Cep { get; set; }
-        private string Descricao { get; set; }
-        private string Telefone { get; set; }
-        private string Email { get; set; }
-        private DateTime HorarioCheckIn { get; set; }
-        private DateTime HorarioCheckOut { get; set; }
+        public string Nome { get; private set; }
+        public string Endereco { get; private set; }
+        public string Cep { get; private set; }
+        public string Descricao { get; private set; }
+        public string Telefone { get; private set; }
+        public string Email { get; private set; }
+        public TimeOnly HorarioCheckIn { get; private set; }
+        public TimeOnly HorarioCheckOut { get; private set; }
+        public List<ServicoXHotel> ListaDeServicoXHotel { get; set; }
+        public List<Quarto> ListaDeQuarto { get; set; }
 
         public Hotel(int id, string nome, string endereco, string cep, string descricao, string telefone, string email,
-                     DateTime horarioCheckIn, DateTime horarioCheckOut, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
-                     : base(id, dataCadastro, dataUltimaAtualizacao)
+                     TimeOnly horarioCheckIn, TimeOnly horarioCheckOut, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
+
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             Nome = nome;
             Endereco = endereco;
             Cep = cep;
@@ -26,7 +31,10 @@ namespace ProjetoHotel.Lib.Models
             HorarioCheckIn = horarioCheckIn;
             HorarioCheckOut = horarioCheckOut;
         }
+        public Hotel()
+        {
 
+        }
         public bool ValidarEmail(string email)
         {
             if (email.Contains("@"))
@@ -90,19 +98,19 @@ namespace ProjetoHotel.Lib.Models
         {
             return Email;
         }
-        public void SetHorarioCheckIn(DateTime horarioCheckIn)
+        public void SetHorarioCheckIn(TimeOnly horarioCheckIn)
         {
             HorarioCheckIn = horarioCheckIn;
         }
-        public DateTime GetHorarioCheckIn()
+        public TimeOnly GetHorarioCheckIn()
         {
             return HorarioCheckIn;
         }
-        public void SetDataHorarioCheckOut(DateTime horarioCheckOut)
+        public void SetDataHorarioCheckOut(TimeOnly horarioCheckOut)
         {
             HorarioCheckOut = horarioCheckOut;
         }
-        public DateTime GetHorarioCheckOut()
+        public TimeOnly GetHorarioCheckOut()
         {
             return HorarioCheckOut;
         }

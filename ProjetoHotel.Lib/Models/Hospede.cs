@@ -9,17 +9,25 @@ namespace ProjetoHotel.Lib.Models
         private string Cpf { get; set; }
         private string Email { get; set; }
         private DateTime DataNascimento { get; set; }
+        public List<Estadia> ListaDeEstadia { get; set; }
+        public List<EstadiaXHospede> ListaDeEstadiaXHospede { get; set; }
 
         public Hospede(int id, string nome, string telefone, string cpf, string email, DateTime dataNascimento, DateTime dataCadastro,
-                       DateTime dataUltimaAtualizacao) : base(id, dataCadastro, dataUltimaAtualizacao)
+                       DateTime dataUltimaAtualizacao)
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             SetNome(nome);
             SetTelefone(telefone);
             SetCpf(cpf);
             SetEmail(email);
             SetDataNacimento(dataNascimento);
         }
+        public Hospede()
+        {
 
+        }
         public bool ValidarEmail(string email)
         {
             if (email.Contains("@"))

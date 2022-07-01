@@ -4,14 +4,24 @@ namespace ProjetoHotel.Lib.Models
     {
         private int Numero { get; set; }
         private int Andar { get; set; }
-        private TipoDeQuarto TipoDeQuarto { get; set; }
+        public Hotel Hotel { get; private set; }
+        public TipoDeQuarto TipoDeQuarto { get; private set; }
+        public int IdTipoQuarto { get; set; }
+        public int IdHotel { get; set; }
+        public List<Estadia> ListaDeEstadia { get; set; }
 
         public Quarto(int id, int numero, int andar, TipoDeQuarto tipoDeQuarto, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
-                      : base(id, dataCadastro, dataUltimaAtualizacao)
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             Numero = numero;
             Andar = andar;
             TipoDeQuarto = tipoDeQuarto;
+        }
+        public Quarto()
+        {
+
         }
         public void SetNumero(int numero)
         {
@@ -36,6 +46,14 @@ namespace ProjetoHotel.Lib.Models
         public TipoDeQuarto GetTipoDeQuarto()
         {
             return TipoDeQuarto;
+        }
+        public void SetHotel(Hotel hotel)
+        {
+            Hotel = hotel;
+        }
+        public Hotel GetHotel()
+        {
+            return Hotel;
         }
     }
 }

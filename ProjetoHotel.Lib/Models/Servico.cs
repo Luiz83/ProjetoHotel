@@ -4,9 +4,18 @@ namespace ProjetoHotel.Lib.Models
     {
         private string Nome { get; set; }
 
-        public Servico(int id, string nome, DateTime dataCadastro, DateTime dataUltimaAtualizacao) : base(id, dataCadastro, dataUltimaAtualizacao)
+        public List<ServicoXHotel> ServicoXHotelList { get; set; }
+
+        public Servico(int id, string nome, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             Nome = nome;
+        }
+        Servico()
+        {
+
         }
         public void SetNome(string nome)
         {

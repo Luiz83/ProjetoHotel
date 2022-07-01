@@ -10,10 +10,14 @@ namespace ProjetoHotel.Lib.Models
         private int CamaCasal { get; set; }
         private int CamaSolteiro { get; set; }
         private double Valor { get; set; }
+        public List<Quarto> ListaQuartos { get; set; }
 
         public TipoDeQuarto(int id, string nome, string descricao, int ocupacaoMaxima, int camaCasal, int camaSolteiro, double valor,
-                            DateTime dataCadastro, DateTime dataUltimaAtualizacao) : base(id, dataCadastro, dataUltimaAtualizacao)
+                            DateTime dataCadastro, DateTime dataUltimaAtualizacao)
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             Nome = nome;
             Descricao = descricao;
             CamaCasal = camaCasal;
@@ -21,7 +25,10 @@ namespace ProjetoHotel.Lib.Models
             SetOcupacaoMaxima(ocupacaoMaxima);
             Valor = valor;
         }
+        public TipoDeQuarto()
+        {
 
+        }
         public bool ValidarOcupacaoMaximaPermitida(int ocupacao)
         {
             if (ocupacao <= ((CamaCasal * 2) + CamaSolteiro))

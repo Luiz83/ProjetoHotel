@@ -4,16 +4,11 @@ namespace ProjetoHotel.Lib.Models
 {
     public class ModelBase
     {
-        protected int Id { get; set; }
+        public int Id { get; protected set; }
         protected DateTime DataCadastro { get; set; }
         protected DateTime DataUltimaAtualizacao { get; set; }
 
-        public ModelBase(int id, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
-        {
-            Id = id;
-            DataCadastro = dataCadastro;
-            DataUltimaAtualizacao = dataUltimaAtualizacao;
-        }
+        
 
         public bool ValidarSeUltimaAtualizacaoEMaiorQueDataCadastro(DateTime lastUpdate)
         {

@@ -2,14 +2,23 @@ namespace ProjetoHotel.Lib.Models
 {
     public class EstadiaXHospede : ModelBase
     {
-        private Estadia Estadia { get; set; }
-        private Hospede Hospede { get; set; }
+        public Estadia Estadia { get; private set; }
+        public Hospede Hospede { get; private set; }
+        public int IdHospede { get; set; }
+        public int IdEstadia { get; set; }
 
-        public EstadiaXHospede(int id, Estadia estadia, Hospede hospede, DateTime dataCadastro, DateTime dataUltimaAtualizacao) : 
-                               base(id, dataCadastro, dataUltimaAtualizacao)
+        public EstadiaXHospede(int id, Estadia estadia, Hospede hospede, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
+
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             Estadia = estadia;
             Hospede = hospede;
+        }
+        public EstadiaXHospede()
+        {
+
         }
         public void SetEstadia(Estadia estadia)
         {

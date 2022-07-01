@@ -4,18 +4,29 @@ namespace ProjetoHotel.Lib.Models
 {
     public class Estadia : ModelBase
     {
-        private Hospede Responsavel { get; set; }
-        private Quarto Quarto { get; set; }
-        private DateTime DataEntrada { get; set; }
-        private DateTime DataSaida { get; set; }
+        public Hospede? Responsavel { get; private set; }
+        public Quarto? Quarto { get; private set; }
+        public DateTime DataEntrada { get; private set; }
+        public DateTime DataSaida { get; private set; }
+        public int IdQuarto { get; set; }
+        public int IdResponsavel { get; set; }
+        public List<EstadiaXHospede> ListaDeEstadiaXHospede { get; set; }
 
         public Estadia(int id, Hospede responsavel, Quarto quarto, DateTime dataEntrada, DateTime dataSaida,
-                       DateTime dataCadastro, DateTime dataUltimaAtualizacao) : base(id, dataCadastro, dataUltimaAtualizacao)
+                       DateTime dataCadastro, DateTime dataUltimaAtualizacao)
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             Responsavel = responsavel;
             Quarto = quarto;
             DataEntrada = dataEntrada;
             SetDataSaida(dataSaida);
+        }
+
+        public Estadia()
+        {
+
         }
 
         public bool ValidarDataDeSaida(DateTime saida)

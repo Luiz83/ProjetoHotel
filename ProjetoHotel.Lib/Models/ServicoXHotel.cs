@@ -2,13 +2,22 @@ namespace ProjetoHotel.Lib.Models
 {
     public class ServicoXHotel : ModelBase
     {
-        private Hotel Hotel { get; set; }
-        private Servico Servico { get; set; }
+        public Hotel Hotel { get; private set; }
+        public Servico Servico { get; private set; }
+        public int IdServico { get; set; }
+        public int IdHotel { get; set; }
 
-        public ServicoXHotel(int id, Hotel hotel, Servico servico, DateTime dataCadastro, DateTime dataUltimaAtualizacao) : base(id, dataCadastro, dataUltimaAtualizacao)
+        public ServicoXHotel(int id, Hotel hotel, Servico servico, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
         {
+            Id = id;
+            DataCadastro = dataCadastro;
+            DataUltimaAtualizacao = dataUltimaAtualizacao;
             Hotel = hotel;
             Servico = servico;
+        }
+        public ServicoXHotel()
+        {
+
         }
         public void SetHotel(Hotel hotel)
         {
