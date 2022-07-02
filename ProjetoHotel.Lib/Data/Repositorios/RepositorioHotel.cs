@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ProjetoHotel.Lib.Data.Repositorios.Interfaces;
 using ProjetoHotel.Lib.Models;
 

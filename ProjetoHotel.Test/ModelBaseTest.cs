@@ -7,7 +7,7 @@ namespace ProjetoHotel.Test
 {
     public class ModelBaseTest
     {
-        [Fact]
+       /* [Fact]
         public void TestarDataUltimaAtualizacaoEMaiorQueDataCadastro()
         {
             //Arrange
@@ -21,6 +21,6 @@ namespace ProjetoHotel.Test
         public ModelBase CriarModelBasePadrao()
         {
             return new ModelBase(1, DateTime.Parse("02/01/0001"), DateTime.Parse("03/01/0001"));
-        }
+        }*/
     }
 }

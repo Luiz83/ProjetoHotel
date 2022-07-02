@@ -19,6 +19,10 @@ namespace ProjetoHotel.Lib.Data.Repositorios
         {
             return _dbset.AsNoTracking().ToList();
         }
+        public async Task<List<T>> BuscarTodosAsync()
+        {
+            return await _dbset.AsNoTracking().ToListAsync();
+        }
         public T BuscarPorId(int id)
         {
             return _dbset.AsNoTracking().First(x => x.GetId() == id);
@@ -27,6 +31,11 @@ namespace ProjetoHotel.Lib.Data.Repositorios
         {
             _dbset.Add(item);
             _context.SaveChanges();
+        }
+        public async Task AdicionarAsync(T item)
+        {
+            await _dbset.AddAsync(item);
+            await _context.SaveChangesAsync();
         }
         public void Deletar(int id)
         {

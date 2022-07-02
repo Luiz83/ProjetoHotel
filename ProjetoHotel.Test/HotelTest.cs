@@ -7,7 +7,7 @@ namespace ProjetoHotel.Test
 {
     public class HotelTest
     {
-        [Fact]
+        /*[Fact]
         public void TestarSeEmailDeveSerValido()
         {
             //Arrange
@@ -32,6 +32,6 @@ namespace ProjetoHotel.Test
         public Hotel CriarHotelPadrao()
         {
             return new Hotel(1, "Hotel Uma Estrela", "Rua dos bobos", "33355000", "Hotel muito bom!", "(11)4444-5555", "teste@email.com", DateTime.Parse("12:00:00"), DateTime.Parse("23:00:00"), DateTime.Now, DateTime.Now);
-        }
+        }*/
     }
 }

@@ -4,6 +4,6 @@ namespace ProjetoHotel.Lib.Data.Repositorios.Interfaces
 {
     public interface IRepositorioHotel : IRepositorioBase<Hotel>
     {
-         
+        
     }
 }

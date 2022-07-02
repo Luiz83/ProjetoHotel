@@ -1,9 +1,11 @@
+using System.Text.Json.Serialization;
 using ProjetoHotel.Lib.Exceptions;
 
 namespace ProjetoHotel.Lib.Models
 {
     public class Hotel : ModelBase
     {
+        [JsonPropertyName("nome")]
         public string Nome { get; private set; }
         public string Endereco { get; private set; }
         public string Cep { get; private set; }
