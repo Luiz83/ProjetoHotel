@@ -13,6 +13,7 @@
             "program": "${workspaceFolder}/ProjetoHotel.Web/bin/Debug/net6.0/ProjetoHotel.Web.dll",
             "args": [],
             "cwd": "${workspaceFolder}/ProjetoHotel.Web",
+            "requireExactSource": false,
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false

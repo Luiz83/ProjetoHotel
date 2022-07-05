@@ -17,8 +17,8 @@ namespace ProjetoHotel.Web.DTOs
         [JsonPropertyName("email")]
         public string Email { get; set; }
         [JsonPropertyName("horariocheckin")]
-        public TimeOnly HorarioCheckIn { get; set; }
+        public DateTime HorarioCheckIn { get; set; }
         [JsonPropertyName("horariocheckout")]
-        public TimeOnly HorarioCheckOut { get; set; }
+        public DateTime HorarioCheckOut { get; set; }
     }
 }

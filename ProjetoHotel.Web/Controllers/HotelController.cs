@@ -3,6 +3,7 @@ using System.Text.Json;
 using ProjetoHotel.Lib.Data.Repositorios.Interfaces;
 using ProjetoHotel.Lib.Models;
 using ProjetoHotel.Web.DTOs;
+using ProjetoHotel.Web.DTOs.RespostaHTTP;
 
 namespace ProjetoHotel.Web.Controllers
 {
@@ -48,20 +49,46 @@ namespace ProjetoHotel.Web.Controllers
         public IActionResult AdicionarHotel(HotelDTO hotelDto)
         {
             var novoHotel = new Hotel(hotelDto.Id, hotelDto.Nome, hotelDto.Endereco, hotelDto.Cep, hotelDto.Descricao,
-                                      hotelDto.Telefone, hotelDto.Email, hotelDto.HorarioCheckIn, hotelDto.HorarioCheckOut,
+                                      hotelDto.Telefone, hotelDto.Email, TimeOnly.Parse(hotelDto.HorarioCheckIn.ToString("t")), TimeOnly.Parse(hotelDto.HorarioCheckOut.ToString("t")),
                                       hotelDto.DataCadastro, hotelDto.DataUltimaAtualizacao);
-            _repositorio.Adicionar(novoHotel);                      
+            _repositorio.Adicionar(novoHotel);
             return Ok("Hotel adicionado com sucesso!");
         }
         [HttpPost("AdicionarAsync")]
         public async Task<IActionResult> AdicionarHotelAsync(HotelDTO hotelDto)
         {
-            var novoHotel = new Hotel(hotelDto.Id, hotelDto.Nome, hotelDto.Endereco, hotelDto.Cep, hotelDto.Descricao,
-                                      hotelDto.Telefone, hotelDto.Email, hotelDto.HorarioCheckIn, hotelDto.HorarioCheckOut,
+            var endereco = await BuscarEnderecoPeloViaCep(hotelDto.Cep);
+            var novoHotel = new Hotel(hotelDto.Id, hotelDto.Nome, endereco, hotelDto.Cep, hotelDto.Descricao,
+                                      hotelDto.Telefone, hotelDto.Email, TimeOnly.Parse(hotelDto.HorarioCheckIn.ToString("t")), TimeOnly.Parse(hotelDto.HorarioCheckOut.ToString("t")),
                                       hotelDto.DataCadastro, hotelDto.DataUltimaAtualizacao);
-            await _repositorio.AdicionarAsync(novoHotel);                      
-            return Ok("Hotel adicionado com sucesso!");
+            await _repositorio.AdicionarAsync(novoHotel);
+            var conteudo = JsonContent.Create(new HotelDtoResquestHttp()
+            {
+                id = hotelDto.Id,
+                nome = hotelDto.Nome,
+                cep = hotelDto.Cep,
+                descricao = hotelDto.Descricao,
+                telefone = hotelDto.Telefone,
+                email = hotelDto.Email,
+                checkin = hotelDto.HorarioCheckIn,
+                checkout = hotelDto.HorarioCheckOut
+            });
+            var response = await client.PostAsync("https://dodev-ex.herokuapp.com/Hotel/Estatico", conteudo);
+            return Ok(await response.Content.ReadAsStringAsync());
         }
-
+        [HttpDelete("Deletar")]
+        public IActionResult Delete(int id)
+        {
+            _repositorio.Deletar(id);
+            return Ok("Deletado com sucesso");
+        }
+        private async Task<string> BuscarEnderecoPeloViaCep(string cep)
+        {
+            var request = await client.GetAsync($"https://viacep.com.br/ws/{cep}/json/");
+            var BodyRequest = await request.Content.ReadAsStringAsync();
+            var endereco = JsonSerializer.Deserialize<DeserializeCep>(BodyRequest);
+            string retorno = endereco.logradouro;
+            return retorno;
+        }
     }
 }
